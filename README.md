@@ -1,6 +1,6 @@
 # SoftBodyDemo
 
-A demo I presented during a talk on soft body physics in Unity 5.
+A demo I presented during a talk on Soft Body Physics in Unity 5.
 
 ## Video
 
