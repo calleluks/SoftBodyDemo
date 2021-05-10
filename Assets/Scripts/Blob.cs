@@ -2,11 +2,6 @@
 using System.Collections;
 
 public class Blob : MonoBehaviour {
-    private class PropagateCollisions : MonoBehaviour {
-        void OnCollisionEnter2D(Collision2D collision) {
-            transform.parent.SendMessage("OnCollisionEnter2D", collision);
-        }
-    }
 
     public int width = 5;
     public int height = 5;
@@ -40,7 +35,6 @@ public class Blob : MonoBehaviour {
         for (int i = 0; i < referencePointsCount; i++) {
             referencePoints[i] = new GameObject();
             referencePoints[i].tag = gameObject.tag;
-            referencePoints[i].AddComponent<PropagateCollisions>();
             referencePoints[i].transform.parent = transform;
             Quaternion rotation =
                 Quaternion.AngleAxis(angle * (i - 1), Vector3.back);
