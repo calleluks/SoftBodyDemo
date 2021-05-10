@@ -44,7 +44,9 @@ public class Blob : MonoBehaviour {
                 rotation * offsetFromCenter;
 
             Rigidbody2D body = referencePoints[i].AddComponent<Rigidbody2D>();
-            body.fixedAngle = true;
+
+            body.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             body.interpolation = rigidbody.interpolation;
             body.collisionDetectionMode = rigidbody.collisionDetectionMode;
 
