@@ -2,11 +2,6 @@
 using System.Collections;
 
 public class Blob : MonoBehaviour {
-    private class PropagateCollisions : MonoBehaviour {
-        void OnCollisionEnter2D(Collision2D collision) {
-            transform.parent.SendMessage("OnCollisionEnter2D", collision);
-        }
-    }
 
     public int width = 5;
     public int height = 5;
@@ -38,9 +33,10 @@ public class Blob : MonoBehaviour {
         float angle = 360.0f / referencePointsCount;
 
         for (int i = 0; i < referencePointsCount; i++) {
-            referencePoints[i] = new GameObject();
-            referencePoints[i].tag = gameObject.tag;
-            referencePoints[i].AddComponent<PropagateCollisions>();
+            referencePoints[i] = new GameObject
+            {
+                tag = gameObject.tag
+            };
             referencePoints[i].transform.parent = transform;
             Quaternion rotation =
                 Quaternion.AngleAxis(angle * (i - 1), Vector3.back);
@@ -48,7 +44,9 @@ public class Blob : MonoBehaviour {
                 rotation * offsetFromCenter;
 
             Rigidbody2D body = referencePoints[i].AddComponent<Rigidbody2D>();
-            body.fixedAngle = true;
+
+            body.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             body.interpolation = rigidbody.interpolation;
             body.collisionDetectionMode = rigidbody.collisionDetectionMode;
 

@@ -19,7 +19,7 @@
             float4 _Color;
 
             float4 frag(v2f_img i): COLOR {
-                fixed4 transparent = float4(float3(_Color), 0);
+                fixed4 transparent = float4(_Color.r, _Color.g, _Color.b, 0);
                 float distance = length(i.uv - float2(0.5, 0.5));
                 float delta = fwidth(distance);
                 float alpha = smoothstep(0.5, 0.5 - delta, distance);
