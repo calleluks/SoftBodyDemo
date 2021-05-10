@@ -33,8 +33,10 @@ public class Blob : MonoBehaviour {
         float angle = 360.0f / referencePointsCount;
 
         for (int i = 0; i < referencePointsCount; i++) {
-            referencePoints[i] = new GameObject();
-            referencePoints[i].tag = gameObject.tag;
+            referencePoints[i] = new GameObject
+            {
+                tag = gameObject.tag
+            };
             referencePoints[i].transform.parent = transform;
             Quaternion rotation =
                 Quaternion.AngleAxis(angle * (i - 1), Vector3.back);
